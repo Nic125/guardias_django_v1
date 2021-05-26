@@ -1,0 +1,32 @@
+.content{
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form{
+  width: 300px;
+}
+
+form legend{
+  color:darkgreen;
+}
+
+form input{
+  margin-bottom: 20px;
+}
+
+form button{
+  margin-top: 10px;
+  box-shadow: 2px 2px 4px lightgrey;
+
+}
+.sesion{
+  width: 100%
+}
+
+a{
+  box-shadow: 2px 2px 4px lightgrey;
+}

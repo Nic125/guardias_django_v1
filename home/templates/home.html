@@ -1,0 +1,715 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<link href="{% static 'css/extra.css' %}" rel="stylesheet">
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h4> Inicio</h4>
+</div>
+<div class="curren">
+
+
+  <div class="edit_entry">
+    <div class="edit-content">
+      <div class="close">+</div>
+      <h6 id="title_edit">Categoría servicio</h6>
+      <h9 id="messagec"></h9>
+      <hr style="margin-top: 10px; width:95%; margin-left: 7px;">
+      <div class="row">
+
+        <div class="col-5">
+          <form class="" method="POST" id="form_entry_mods" action="">{% csrf_token %}
+            <input type="text" class="guard_id_d" id="guard_id_d" value="" hidden>
+            <input type="text" class="date_d" id="date_d" value="" hidden>
+            <input type="text" class="month_year_d" id="month_year_d" value="" hidden>
+            <input type="text" class="is_working_day_d" id="is_working_day_d" value="" hidden>
+            <input type="text" class="service_d" id="service_d" value="" hidden>
+            <input type="text" class="department_d" id="department_d" value="" hidden>
+            <input type="text" class="shift_d" id="shift_d" value="" hidden>
+            <input type="text" class="guard_day_id" id="guard_day_id" value="" hidden>
+
+
+            <select class="form-select-sm" name="sector" id="personal_edit" aria-label="Default select example" disabled>
+            </select>
+            <select class="form-select-sm" name="sector" id="shift_edit" aria-label="Default select example" required disabled>
+              <option selected hidden disabled>Seleccionar turno</option>
+              <option value="Turno mañana">Turno mañana</option>
+              <option value="Turno tarde">Turno tarde</option>
+              <option value="Turno noche">Turno noche</option>
+            </select>
+            <input type="number" name="hours" id="hours" value="" placeholder="Cantidad de horas" style="margin-top: 5px;" disabled>
+            <div class="form-check" style="display:flex; margin-top:-15px;">
+              <input class="form-check-input" name="extra_hours" type="checkbox" value="1" id="extra_hours" style="width: 15px;" disabled>
+              <label class="form-check-label extrahourslabel" for="extra_hours">
+                Horas extras
+              </label>
+            </div>
+            <div class="form-check" style="display:flex; margin-top:-15px;">
+              <input class="form-check-input" type="checkbox" name="all_personal_edit" value="check" id="all_personal_edit" style="width: 15px;" disabled>
+              <label class="form-check-label extrahourslabel" for="all_personal_edit">
+                Todo el personal
+              </label>
+            </div>
+            <div class="form-check" style="display:flex; margin-top:-15px;">
+              <input class="form-check-input" type="checkbox" value="activa" name="is_active" id="is_active" style="width: 15px;" disabled>
+              <label class="form-check-label extrahourslabel" for="is_active">
+                Activa
+              </label>
+            </div>
+
+            <input type="text" name="idc" id="idc" value="" hidden>
+            <button type="submit" class="btn btn-outline-success btn-sm" id="save_guard_entry" onclick="return confirm('¿esta seguro de guardar el registro?')" disabled>Guardar</button>
+            <button type="submit" class="btn btn-outline-success btn-sm" id="update_guard_entry" name="personal" onclick="return confirm('¿esta seguro de actualizar el registro?')" disabled>Actualizar</button>
+          </form>
+
+        </div>
+
+        <div class="col-7">
+
+          <div class="table-edit">
+            <div class="list-group">
+
+
+
+              <select class="form-select" size="12" id="table_edit" aria-label="size 3 select example" required>
+
+              </select>
+              <button type="button" class="btn btn-outline-success btn-sm" id="edit_guard_d" name="personal" style="margin-top: 10px;">Editar</button>
+              <button type="button" class="btn btn-outline-success btn-sm" id="save_guard_d" name="personal" style="margin-top: 10px;">Nuevo</button>
+              <button type="button" class="btn btn-outline-success btn-sm" id="delete_guard_d" name="personal" style="margin-top: 10px;" onclick="return confirm('¿esta seguro de eliminar el registro?')">Eliminar</button>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="calendar current_month">
+    <div class="title">
+      <button id="previous" type="button" class="btn btn-outline-success btn-sm" title="Ir al mes anterior" name="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"/>
+      </svg></button><h6 style="margin-left:20px;">Guardias del mes de {% now "F" %}</h6>
+    </div>
+    <div class="row week">
+      <div class="col-1 dayname">
+        <p>LUN</p>
+      </div>
+      <div class="col-1 dayname">
+        <p>MAR</p>
+      </div>
+      <div class="col-1 dayname">
+        <p>MIÉ</p>
+      </div>
+      <div class="col-1 dayname">
+        <p>JUE</p>
+      </div>
+      <div class="col-1 dayname">
+        <p>VIE</p>
+      </div>
+      <div class="col-1 dayname">
+        <p>SÁB</p>
+      </div>
+      <div class="col-1 dayname">
+        <p>DOM</p>
+      </div>
+      <!-- ---------------------CURRENT MONTH----------------------- -->
+
+      {% if current_month_guard.0.0.1 == "lunes" %}
+      {% if current_month_guard %}
+      {% for days in current_month_guard.0%}
+      {% if days.2 == "Sábado" or days.2 == "Domingo" or days.2 == "No hábil"%}
+      <div class="col-1 day" style="background-color:#BEE5D3">
+        {% else %}
+        <div class="col-1 day">
+          {% endif %}
+          <div class="date-edit">
+            <p>{{days.0}}{% if days.2 == "No hábil" %} - <strong>Feriado</strong>{% endif %}</p>
+          </div>
+
+          {% for g in days.3 %}
+          {% if g.0.personal_id != none %}
+
+          <a tabindex="0" class="btn btn-sm btnguard" role="button" data-html='true' data-bs-toggle="popover" data-bs-trigger="hover" title="{{g.0.guard_id.service_id.department_id.name}}, {{g.0.guard_id.name}}"
+            data-bs-content="{% if g.1 %}{% for x in g%}{{x.personal_id.last_name}}, {{x.personal_id.name}} / {% endfor %}{% else %}{{g.0.personal_id.last_name}}, {{g.0.personal_id.name}}{% endif %}" style=>
+            <input type="text" class="shift" name="" id="shift{{days.0}}" value="{{g.0.shift}}" hidden>
+            <input type="text" class="month_year" name="" id="shift{{days.0}}" value="{{g.0.month_year}}" hidden>
+            <input type="text" class="is_working_day" name="" id="shift{{days.0}}" value="{{g.0.is_working_day}}" hidden>
+            <input type="text" class="guard_id" name="" id="box{{days.0}}" value="{{g.0.guard_id.id}}" hidden>
+            <input type="text" class="date" name="" id="date{{days.0}}" value="{{g.0.date|date:'Y-m-d'}}" hidden>
+            <input type="text" class="service" name="" id="service{{days.0}}" value="{{g.0.guard_id.service_id.id}}" hidden>
+            <input type="text" class="department" name="" id="department{{days.0}}" value="{{g.0.guard_id.service_id.department_id.id}}" hidden>
+          </a>
+          {% endif %}
+          {% endfor %}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% elif current_month_guard.0.0.1 == "martes" %}
+
+        <div class="col-1 day">
+        </div>
+
+        {% if current_month_guard %}
+        {% for days in current_month_guard.0%}
+        {% if days.2 == "Sábado" or days.2 == "Domingo" or days.2 == "No hábil"%}
+        <div class="col-1 day" style="background-color:#BEE5D3">
+          {% else %}
+          <div class="col-1 day">
+            {% endif %}
+            <div class="date-edit">
+              <p>{{days.0}}{% if days.2 == "No hábil" %} - <strong>Feriado</strong>{% endif %}</p>
+            </div>
+
+            {% for g in days.3 %}
+            {% if g.0.personal_id != none %}
+
+            <a tabindex="0" class="btn btn-sm btnguard" role="button" data-html='true' data-bs-toggle="popover" data-bs-trigger="hover" title="{{g.0.guard_id.service_id.department_id.name}}, {{g.0.guard_id.name}}"
+              data-bs-content="{% if g.1 %}{% for x in g%}{{x.personal_id.last_name}}, {{x.personal_id.name}} / {% endfor %}{% else %}{{g.0.personal_id.last_name}}, {{g.0.personal_id.name}}{% endif %}" style=>
+              <input type="text" class="shift" name="" id="shift{{days.0}}" value="{{g.0.shift}}" hidden>
+              <input type="text" class="month_year" name="" id="shift{{days.0}}" value="{{g.0.month_year}}" hidden>
+              <input type="text" class="is_working_day" name="" id="shift{{days.0}}" value="{{g.0.is_working_day}}" hidden>
+              <input type="text" class="guard_id" name="" id="box{{days.0}}" value="{{g.0.guard_id.id}}" hidden>
+              <input type="text" class="date" name="" id="date{{days.0}}" value="{{g.0.date|date:'Y-m-d'}}" hidden>
+              <input type="text" class="service" name="" id="service{{days.0}}" value="{{g.0.guard_id.service_id.id}}" hidden>
+              <input type="text" class="department" name="" id="department{{days.0}}" value="{{g.0.guard_id.service_id.department_id.id}}" hidden>
+            </a>
+            {% endif %}
+            {% endfor %}
+          </div>
+          {% endfor %}
+          {% endif %}
+
+          {% elif current_month_guard.0.0.1 == "miércoles" %}
+
+          <div class="col-1 day">
+          </div>
+          <div class="col-1 day">
+          </div>
+
+          {% if current_month_guard %}
+          {% for days in current_month_guard.0%}
+          {% if days.2 == "Sábado" or days.2 == "Domingo" or days.2 == "No hábil"%}
+          <div class="col-1 day" style="background-color:#BEE5D3">
+            {% else %}
+            <div class="col-1 day">
+              {% endif %}
+              <div class="date-edit">
+                <p>{{days.0}}{% if days.2 == "No hábil" %} - <strong>Feriado</strong>{% endif %}</p>
+              </div>
+
+              {% for g in days.3 %}
+              {% if g.0.personal_id != none %}
+
+              <a tabindex="0" class="btn btn-sm btnguard" role="button" data-html='true' data-bs-toggle="popover" data-bs-trigger="hover" title="{{g.0.guard_id.service_id.department_id.name}}, {{g.0.guard_id.name}}"
+                data-bs-content="{% if g.1 %}{% for x in g%}{{x.personal_id.last_name}}, {{x.personal_id.name}} / {% endfor %}{% else %}{{g.0.personal_id.last_name}}, {{g.0.personal_id.name}}{% endif %}" style=>
+                <input type="text" class="shift" name="" id="shift{{days.0}}" value="{{g.0.shift}}" hidden>
+                <input type="text" class="month_year" name="" id="shift{{days.0}}" value="{{g.0.month_year}}" hidden>
+                <input type="text" class="is_working_day" name="" id="shift{{days.0}}" value="{{g.0.is_working_day}}" hidden>
+                <input type="text" class="guard_id" name="" id="box{{days.0}}" value="{{g.0.guard_id.id}}" hidden>
+                <input type="text" class="date" name="" id="date{{days.0}}" value="{{g.0.date|date:'Y-m-d'}}" hidden>
+                <input type="text" class="service" name="" id="service{{days.0}}" value="{{g.0.guard_id.service_id.id}}" hidden>
+                <input type="text" class="department" name="" id="department{{days.0}}" value="{{g.0.guard_id.service_id.department_id.id}}" hidden>
+              </a>
+              {% endif %}
+              {% endfor %}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% elif current_month_guard.0.0.1 == "jueves" %}
+
+            <div class="col-1 day" style="background-color: white; border: 2px dashed #E8EED2;">
+            </div>
+            <div class="col-1 day" style="background-color: white; border: 2px dashed #E8EED2;">
+            </div>
+            <div class="col-1 day" style="background-color: white; border: 2px dashed #E8EED2;">
+            </div>
+            {% if current_month_guard %}
+            {% for days in current_month_guard.0%}
+            {% if days.2 == "Sábado" or days.2 == "Domingo" or days.2 == "No hábil"%}
+            <div class="col-1 day" style="background-color:#BEE5D3">
+              {% else %}
+              <div class="col-1 day">
+                {% endif %}
+                <div class="date-edit">
+                  <p>{{days.0}}{% if days.2 == "No hábil" %} - <strong>Feriado</strong>{% endif %}</p>
+                </div>
+
+                {% for g in days.3 %}
+                {% if g.0.personal_id != none %}
+
+                <a tabindex="0" class="btn btn-sm btnguard" role="button" data-html='true' data-bs-toggle="popover" data-bs-trigger="hover" title="{{g.0.guard_id.service_id.department_id.name}}, {{g.0.guard_id.name}}"
+                  data-bs-content="{% if g.1 %}{% for x in g%}{{x.personal_id.last_name}}, {{x.personal_id.name}} / {% endfor %}{% else %}{{g.0.personal_id.last_name}}, {{g.0.personal_id.name}}{% endif %}" style=>
+                  <input type="text" class="shift" name="" id="shift{{days.0}}" value="{{g.0.shift}}" hidden>
+                  <input type="text" class="month_year" name="" id="shift{{days.0}}" value="{{g.0.month_year}}" hidden>
+                  <input type="text" class="is_working_day" name="" id="shift{{days.0}}" value="{{g.0.is_working_day}}" hidden>
+                  <input type="text" class="guard_id" name="" id="box{{days.0}}" value="{{g.0.guard_id.id}}" hidden>
+                  <input type="text" class="date" name="" id="date{{days.0}}" value="{{g.0.date|date:'Y-m-d'}}" hidden>
+                  <input type="text" class="service" name="" id="service{{days.0}}" value="{{g.0.guard_id.service_id.id}}" hidden>
+                  <input type="text" class="department" name="" id="department{{days.0}}" value="{{g.0.guard_id.service_id.department_id.id}}" hidden>
+                </a>
+                {% endif %}
+                {% endfor %}
+              </div>
+              {% endfor %}
+              {% endif %}
+
+
+              {% elif current_month_guard.0.0.1 == "viernes" %}
+
+              <div class="col-1 day">
+              </div>
+              <div class="col-1 day">
+              </div>
+              <div class="col-1 day">
+              </div>
+              <div class="col-1 day">
+              </div>
+
+
+              {% if current_month_guard %}
+              {% for days in current_month_guard.0%}
+              {% if days.2 == "Sábado" or days.2 == "Domingo" or days.2 == "No hábil"%}
+              <div class="col-1 day" style="background-color:#BEE5D3">
+                {% else %}
+                <div class="col-1 day">
+                  {% endif %}
+                  <div class="date-edit">
+                    <p>{{days.0}}{% if days.2 == "No hábil" %} - <strong>Feriado</strong>{% endif %}</p>
+                  </div>
+
+                  {% for g in days.3 %}
+                  {% if g.0.personal_id != none %}
+
+                  <a tabindex="0" class="btn btn-sm btnguard" role="button" data-html='true' data-bs-toggle="popover" data-bs-trigger="hover" title="{{g.0.guard_id.service_id.department_id.name}}, {{g.0.guard_id.name}}"
+                    data-bs-content="{% if g.1 %}{% for x in g%}{{x.personal_id.last_name}}, {{x.personal_id.name}} / {% endfor %}{% else %}{{g.0.personal_id.last_name}}, {{g.0.personal_id.name}}{% endif %}" style=>
+                    <input type="text" class="shift" name="" id="shift{{days.0}}" value="{{g.0.shift}}" hidden>
+                    <input type="text" class="month_year" name="" id="shift{{days.0}}" value="{{g.0.month_year}}" hidden>
+                    <input type="text" class="is_working_day" name="" id="shift{{days.0}}" value="{{g.0.is_working_day}}" hidden>
+                    <input type="text" class="guard_id" name="" id="box{{days.0}}" value="{{g.0.guard_id.id}}" hidden>
+                    <input type="text" class="date" name="" id="date{{days.0}}" value="{{g.0.date|date:'Y-m-d'}}" hidden>
+                    <input type="text" class="service" name="" id="service{{days.0}}" value="{{g.0.guard_id.service_id.id}}" hidden>
+                    <input type="text" class="department" name="" id="department{{days.0}}" value="{{g.0.guard_id.service_id.department_id.id}}" hidden>
+                  </a>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+                {% endfor %}
+                {% endif %}
+
+                {% elif current_month_guard.0.0.1 == "sábado" %}
+
+                <div class="col-1 day">
+                </div>
+                <div class="col-1 day">
+                </div>
+                <div class="col-1 day">
+                </div>
+                <div class="col-1 day">
+                </div>
+                <div class="col-1 day">
+                </div>
+
+                {% if current_month_guard %}
+                {% for days in current_month_guard.0%}
+                {% if days.2 == "Sábado" or days.2 == "Domingo" or days.2 == "No hábil"%}
+                <div class="col-1 day" style="background-color:#BEE5D3">
+                  {% else %}
+                  <div class="col-1 day">
+                    {% endif %}
+                    <div class="date-edit">
+                      <p>{{days.0}}{% if days.2 == "No hábil" %} - <strong>Feriado</strong>{% endif %}</p>
+                    </div>
+
+                    {% for g in days.3 %}
+                    {% if g.0.personal_id != none %}
+
+                    <a tabindex="0" class="btn btn-sm btnguard" role="button" data-html='true' data-bs-toggle="popover" data-bs-trigger="hover" title="{{g.0.guard_id.service_id.department_id.name}}, {{g.0.guard_id.name}}"
+                      data-bs-content="{% if g.1 %}{% for x in g%}{{x.personal_id.last_name}}, {{x.personal_id.name}} / {% endfor %}{% else %}{{g.0.personal_id.last_name}}, {{g.0.personal_id.name}}{% endif %}" style=>
+                      <input type="text" class="shift" name="" id="shift{{days.0}}" value="{{g.0.shift}}" hidden>
+                      <input type="text" class="month_year" name="" id="shift{{days.0}}" value="{{g.0.month_year}}" hidden>
+                      <input type="text" class="is_working_day" name="" id="shift{{days.0}}" value="{{g.0.is_working_day}}" hidden>
+                      <input type="text" class="guard_id" name="" id="box{{days.0}}" value="{{g.0.guard_id.id}}" hidden>
+                      <input type="text" class="date" name="" id="date{{days.0}}" value="{{g.0.date|date:'Y-m-d'}}" hidden>
+                      <input type="text" class="service" name="" id="service{{days.0}}" value="{{g.0.guard_id.service_id.id}}" hidden>
+                      <input type="text" class="department" name="" id="department{{days.0}}" value="{{g.0.guard_id.service_id.department_id.id}}" hidden>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+
+                  {% elif current_month_guard.0.0.1 == "domingo" %}
+
+                  <div class="col-1 day">
+                  </div>
+                  <div class="col-1 day">
+                  </div>
+                  <div class="col-1 day">
+                  </div>
+                  <div class="col-1 day">
+                  </div>
+                  <div class="col-1 day">
+                  </div>
+                  <div class="col-1 day">
+                  </div>
+
+                  {% if current_month_guard %}
+                  {% for days in current_month_guard.0%}
+                  {% if days.2 == "Sábado" or days.2 == "Domingo" or days.2 == "No hábil"%}
+                  <div class="col-1 day" style="background-color:#BEE5D3">
+                    {% else %}
+                    <div class="col-1 day">
+                      {% endif %}
+                      <div class="date-edit">
+                        <p>{{days.0}}{% if days.2 == "No hábil" %} - <strong>Feriado</strong>{% endif %}</p>
+                      </div>
+
+                      {% for g in days.3 %}
+                      {% if g.0.personal_id != none %}
+
+                      <a tabindex="0" class="btn btn-sm btnguard" role="button" data-html='true' data-bs-toggle="popover" data-bs-trigger="hover" title="{{g.0.guard_id.service_id.department_id.name}}, {{g.0.guard_id.name}}"
+                        data-bs-content="{% if g.1 %}{% for x in g%}{{x.personal_id.last_name}}, {{x.personal_id.name}} / {% endfor %}{% else %}{{g.0.personal_id.last_name}}, {{g.0.personal_id.name}}{% endif %}" style=>
+                        <input type="text" class="shift" name="" id="shift{{days.0}}" value="{{g.0.shift}}" hidden>
+                        <input type="text" class="month_year" name="" id="shift{{days.0}}" value="{{g.0.month_year}}" hidden>
+                        <input type="text" class="is_working_day" name="" id="shift{{days.0}}" value="{{g.0.is_working_day}}" hidden>
+                        <input type="text" class="guard_id" name="" id="box{{days.0}}" value="{{g.0.guard_id.id}}" hidden>
+                        <input type="text" class="date" name="" id="date{{days.0}}" value="{{g.0.date|date:'Y-m-d'}}" hidden>
+                        <input type="text" class="service" name="" id="service{{days.0}}" value="{{g.0.guard_id.service_id.id}}" hidden>
+                        <input type="text" class="department" name="" id="department{{days.0}}" value="{{g.0.guard_id.service_id.department_id.id}}" hidden>
+                      </a>
+                      {% endif %}
+                      {% endfor %}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endif %}
+                  </div>
+
+
+    </div>
+  </div>
+
+
+  <!-- --------------LAST MONTH------------------------------- -->
+
+  <div class="calendar last_month" style="display:none">
+    <div class="title">
+      <button id="actual" type="button" class="btn btn-outline-success btn-sm" title="Ir al mes actual" name="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"/>
+</svg></button><h6 style="margin-left:20px;">Guardias del mes de {{last_month_name}}</h6>
+    </div>
+    <div class="row week">
+      <div class="col-1 dayname">
+        <p>LUN</p>
+      </div>
+      <div class="col-1 dayname">
+        <p>MAR</p>
+      </div>
+      <div class="col-1 dayname">
+        <p>MIÉ</p>
+      </div>
+      <div class="col-1 dayname">
+        <p>JUE</p>
+      </div>
+      <div class="col-1 dayname">
+        <p>VIE</p>
+      </div>
+      <div class="col-1 dayname">
+        <p>SÁB</p>
+      </div>
+      <div class="col-1 dayname">
+        <p>DOM</p>
+      </div>
+
+
+      {% if previous_month_guards.0.0.1 == "lunes" %}
+      {% if previous_month_guards %}
+      {% for days in previous_month_guards.0%}
+      {% if days.2 == "Sábado" or days.2 == "Domingo" or days.2 == "No hábil"%}
+      <div class="col-1 day" style="background-color:#BEE5D3">
+        {% else %}
+        <div class="col-1 day">
+          {% endif %}
+          <div class="date-edit">
+            <p>{{days.0}}{% if days.2 == "No hábil" %} - <strong>Feriado</strong>{% endif %}</p>
+          </div>
+
+          {% for g in days.3 %}
+          {% if g.0.personal_id != none %}
+
+          <a tabindex="0" class="btn btn-sm btnguard" role="button" data-html='true' data-bs-toggle="popover" data-bs-trigger="hover" title="{{g.0.guard_id.service_id.department_id.name}}, {{g.0.guard_id.name}}"
+            data-bs-content="{% if g.1 %}{% for x in g%}{{x.personal_id.last_name}}, {{x.personal_id.name}} / {% endfor %}{% else %}{{g.0.personal_id.last_name}}, {{g.0.personal_id.name}}{% endif %}" style=>
+            <input type="text" class="shift" name="" id="shift{{days.0}}" value="{{g.0.shift}}" hidden>
+            <input type="text" class="month_year" name="" id="shift{{days.0}}" value="{{g.0.month_year}}" hidden>
+            <input type="text" class="is_working_day" name="" id="shift{{days.0}}" value="{{g.0.is_working_day}}" hidden>
+            <input type="text" class="guard_id" name="" id="box{{days.0}}" value="{{g.0.guard_id.id}}" hidden>
+            <input type="text" class="date" name="" id="date{{days.0}}" value="{{g.0.date|date:'Y-m-d'}}" hidden>
+            <input type="text" class="service" name="" id="service{{days.0}}" value="{{g.0.guard_id.service_id.id}}" hidden>
+            <input type="text" class="department" name="" id="department{{days.0}}" value="{{g.0.guard_id.service_id.department_id.id}}" hidden>
+          </a>
+          {% endif %}
+          {% endfor %}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% elif previous_month_guards.0.0.1 == "martes" %}
+
+        <div class="col-1 day">
+        </div>
+
+        {% if previous_month_guards %}
+        {% for days in previous_month_guards.0%}
+        {% if days.2 == "Sábado" or days.2 == "Domingo" or days.2 == "No hábil"%}
+        <div class="col-1 day" style="background-color:#BEE5D3">
+          {% else %}
+          <div class="col-1 day">
+            {% endif %}
+            <div class="date-edit">
+              <p>{{days.0}}{% if days.2 == "No hábil" %} - <strong>Feriado</strong>{% endif %}</p>
+            </div>
+
+            {% for g in days.3 %}
+            {% if g.0.personal_id != none %}
+
+            <a tabindex="0" class="btn btn-sm btnguard" role="button" data-html='true' data-bs-toggle="popover" data-bs-trigger="hover" title="{{g.0.guard_id.service_id.department_id.name}}, {{g.0.guard_id.name}}"
+              data-bs-content="{% if g.1 %}{% for x in g%}{{x.personal_id.last_name}}, {{x.personal_id.name}} / {% endfor %}{% else %}{{g.0.personal_id.last_name}}, {{g.0.personal_id.name}}{% endif %}" style=>
+              <input type="text" class="shift" name="" id="shift{{days.0}}" value="{{g.0.shift}}" hidden>
+              <input type="text" class="month_year" name="" id="shift{{days.0}}" value="{{g.0.month_year}}" hidden>
+              <input type="text" class="is_working_day" name="" id="shift{{days.0}}" value="{{g.0.is_working_day}}" hidden>
+              <input type="text" class="guard_id" name="" id="box{{days.0}}" value="{{g.0.guard_id.id}}" hidden>
+              <input type="text" class="date" name="" id="date{{days.0}}" value="{{g.0.date|date:'Y-m-d'}}" hidden>
+              <input type="text" class="service" name="" id="service{{days.0}}" value="{{g.0.guard_id.service_id.id}}" hidden>
+              <input type="text" class="department" name="" id="department{{days.0}}" value="{{g.0.guard_id.service_id.department_id.id}}" hidden>
+            </a>
+            {% endif %}
+            {% endfor %}
+          </div>
+          {% endfor %}
+          {% endif %}
+
+          {% elif previous_month_guards.0.0.1 == "miércoles" %}
+
+          <div class="col-1 day">
+          </div>
+          <div class="col-1 day">
+          </div>
+
+          {% if previous_month_guards %}
+          {% for days in previous_month_guards.0%}
+          {% if days.2 == "Sábado" or days.2 == "Domingo" or days.2 == "No hábil"%}
+          <div class="col-1 day" style="background-color:#BEE5D3">
+            {% else %}
+            <div class="col-1 day">
+              {% endif %}
+              <div class="date-edit">
+                <p>{{days.0}}{% if days.2 == "No hábil" %} - <strong>Feriado</strong>{% endif %}</p>
+              </div>
+
+              {% for g in days.3 %}
+              {% if g.0.personal_id != none %}
+
+              <a tabindex="0" class="btn btn-sm btnguard" role="button" data-html='true' data-bs-toggle="popover" data-bs-trigger="hover" title="{{g.0.guard_id.service_id.department_id.name}}, {{g.0.guard_id.name}}"
+                data-bs-content="{% if g.1 %}{% for x in g%}{{x.personal_id.last_name}}, {{x.personal_id.name}} / {% endfor %}{% else %}{{g.0.personal_id.last_name}}, {{g.0.personal_id.name}}{% endif %}" style=>
+                <input type="text" class="shift" name="" id="shift{{days.0}}" value="{{g.0.shift}}" hidden>
+                <input type="text" class="month_year" name="" id="shift{{days.0}}" value="{{g.0.month_year}}" hidden>
+                <input type="text" class="is_working_day" name="" id="shift{{days.0}}" value="{{g.0.is_working_day}}" hidden>
+                <input type="text" class="guard_id" name="" id="box{{days.0}}" value="{{g.0.guard_id.id}}" hidden>
+                <input type="text" class="date" name="" id="date{{days.0}}" value="{{g.0.date|date:'Y-m-d'}}" hidden>
+                <input type="text" class="service" name="" id="service{{days.0}}" value="{{g.0.guard_id.service_id.id}}" hidden>
+                <input type="text" class="department" name="" id="department{{days.0}}" value="{{g.0.guard_id.service_id.department_id.id}}" hidden>
+              </a>
+              {% endif %}
+              {% endfor %}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% elif previous_month_guards.0.0.1 == "jueves" %}
+
+            <div class="col-1 day" style="background-color: white; border: 2px dashed #E8EED2;">
+            </div>
+            <div class="col-1 day" style="background-color: white; border: 2px dashed #E8EED2;">
+            </div>
+            <div class="col-1 day" style="background-color: white; border: 2px dashed #E8EED2;">
+            </div>
+            {% if previous_month_guards %}
+            {% for days in previous_month_guards.0%}
+            {% if days.2 == "Sábado" or days.2 == "Domingo" or days.2 == "No hábil"%}
+            <div class="col-1 day" style="background-color:#BEE5D3">
+              {% else %}
+              <div class="col-1 day">
+                {% endif %}
+                <div class="date-edit">
+                  <p>{{days.0}}{% if days.2 == "No hábil" %} - <strong>Feriado</strong>{% endif %}</p>
+                </div>
+
+                {% for g in days.3 %}
+                {% if g.0.personal_id != none %}
+
+                <a tabindex="0" class="btn btn-sm btnguard" role="button" data-html='true' data-bs-toggle="popover" data-bs-trigger="hover" title="{{g.0.guard_id.service_id.department_id.name}}, {{g.0.guard_id.name}}"
+                  data-bs-content="{% if g.1 %}{% for x in g%}{{x.personal_id.last_name}}, {{x.personal_id.name}} / {% endfor %}{% else %}{{g.0.personal_id.last_name}}, {{g.0.personal_id.name}}{% endif %}" style=>
+                  <input type="text" class="shift" name="" id="shift{{days.0}}" value="{{g.0.shift}}" hidden>
+                  <input type="text" class="month_year" name="" id="shift{{days.0}}" value="{{g.0.month_year}}" hidden>
+                  <input type="text" class="is_working_day" name="" id="shift{{days.0}}" value="{{g.0.is_working_day}}" hidden>
+                  <input type="text" class="guard_id" name="" id="box{{days.0}}" value="{{g.0.guard_id.id}}" hidden>
+                  <input type="text" class="date" name="" id="date{{days.0}}" value="{{g.0.date|date:'Y-m-d'}}" hidden>
+                  <input type="text" class="service" name="" id="service{{days.0}}" value="{{g.0.guard_id.service_id.id}}" hidden>
+                  <input type="text" class="department" name="" id="department{{days.0}}" value="{{g.0.guard_id.service_id.department_id.id}}" hidden>
+                </a>
+                {% endif %}
+                {% endfor %}
+              </div>
+              {% endfor %}
+              {% endif %}
+
+
+              {% elif previous_month_guards.0.0.1 == "viernes" %}
+
+              <div class="col-1 day">
+              </div>
+              <div class="col-1 day">
+              </div>
+              <div class="col-1 day">
+              </div>
+              <div class="col-1 day">
+              </div>
+
+
+              {% if previous_month_guards %}
+              {% for days in previous_month_guards.0%}
+              {% if days.2 == "Sábado" or days.2 == "Domingo" or days.2 == "No hábil"%}
+              <div class="col-1 day" style="background-color:#BEE5D3">
+                {% else %}
+                <div class="col-1 day">
+                  {% endif %}
+                  <div class="date-edit">
+                    <p>{{days.0}}{% if days.2 == "No hábil" %} - <strong>Feriado</strong>{% endif %}</p>
+                  </div>
+
+                  {% for g in days.3 %}
+                  {% if g.0.personal_id != none %}
+
+                  <a tabindex="0" class="btn btn-sm btnguard" role="button" data-html='true' data-bs-toggle="popover" data-bs-trigger="hover" title="{{g.0.guard_id.service_id.department_id.name}}, {{g.0.guard_id.name}}"
+                    data-bs-content="{% if g.1 %}{% for x in g%}{{x.personal_id.last_name}}, {{x.personal_id.name}} / {% endfor %}{% else %}{{g.0.personal_id.last_name}}, {{g.0.personal_id.name}}{% endif %}" style=>
+                    <input type="text" class="shift" name="" id="shift{{days.0}}" value="{{g.0.shift}}" hidden>
+                    <input type="text" class="month_year" name="" id="shift{{days.0}}" value="{{g.0.month_year}}" hidden>
+                    <input type="text" class="is_working_day" name="" id="shift{{days.0}}" value="{{g.0.is_working_day}}" hidden>
+                    <input type="text" class="guard_id" name="" id="box{{days.0}}" value="{{g.0.guard_id.id}}" hidden>
+                    <input type="text" class="date" name="" id="date{{days.0}}" value="{{g.0.date|date:'Y-m-d'}}" hidden>
+                    <input type="text" class="service" name="" id="service{{days.0}}" value="{{g.0.guard_id.service_id.id}}" hidden>
+                    <input type="text" class="department" name="" id="department{{days.0}}" value="{{g.0.guard_id.service_id.department_id.id}}" hidden>
+                  </a>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+                {% endfor %}
+                {% endif %}
+
+                {% elif previous_month_guards.0.0.1 == "sábado" %}
+
+                <div class="col-1 day">
+                </div>
+                <div class="col-1 day">
+                </div>
+                <div class="col-1 day">
+                </div>
+                <div class="col-1 day">
+                </div>
+                <div class="col-1 day">
+                </div>
+
+                {% if previous_month_guards %}
+                {% for days in previous_month_guards.0%}
+                {% if days.2 == "Sábado" or days.2 == "Domingo" or days.2 == "No hábil"%}
+                <div class="col-1 day" style="background-color:#BEE5D3">
+                  {% else %}
+                  <div class="col-1 day">
+                    {% endif %}
+                    <div class="date-edit">
+                      <p>{{days.0}}{% if days.2 == "No hábil" %} - <strong>Feriado</strong>{% endif %}</p>
+                    </div>
+
+                    {% for g in days.3 %}
+                    {% if g.0.personal_id != none %}
+
+                    <a tabindex="0" class="btn btn-sm btnguard" role="button" data-html='true' data-bs-toggle="popover" data-bs-trigger="hover" title="{{g.0.guard_id.service_id.department_id.name}}, {{g.0.guard_id.name}}"
+                      data-bs-content="{% if g.1 %}{% for x in g%}{{x.personal_id.last_name}}, {{x.personal_id.name}} / {% endfor %}{% else %}{{g.0.personal_id.last_name}}, {{g.0.personal_id.name}}{% endif %}" style=>
+                      <input type="text" class="shift" name="" id="shift{{days.0}}" value="{{g.0.shift}}" hidden>
+                      <input type="text" class="month_year" name="" id="shift{{days.0}}" value="{{g.0.month_year}}" hidden>
+                      <input type="text" class="is_working_day" name="" id="shift{{days.0}}" value="{{g.0.is_working_day}}" hidden>
+                      <input type="text" class="guard_id" name="" id="box{{days.0}}" value="{{g.0.guard_id.id}}" hidden>
+                      <input type="text" class="date" name="" id="date{{days.0}}" value="{{g.0.date|date:'Y-m-d'}}" hidden>
+                      <input type="text" class="service" name="" id="service{{days.0}}" value="{{g.0.guard_id.service_id.id}}" hidden>
+                      <input type="text" class="department" name="" id="department{{days.0}}" value="{{g.0.guard_id.service_id.department_id.id}}" hidden>
+                    </a>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+
+                  {% elif previous_month_guards.0.0.1 == "domingo" %}
+
+                  <div class="col-1 day">
+                  </div>
+                  <div class="col-1 day">
+                  </div>
+                  <div class="col-1 day">
+                  </div>
+                  <div class="col-1 day">
+                  </div>
+                  <div class="col-1 day">
+                  </div>
+                  <div class="col-1 day">
+                  </div>
+
+                  {% if previous_month_guards %}
+                  {% for days in previous_month_guards.0%}
+                  {% if days.2 == "Sábado" or days.2 == "Domingo" or days.2 == "No hábil"%}
+                  <div class="col-1 day" style="background-color:#BEE5D3">
+                    {% else %}
+                    <div class="col-1 day">
+                      {% endif %}
+                      <div class="date-edit">
+                        <p>{{days.0}}{% if days.2 == "No hábil" %} - <strong>Feriado</strong>{% endif %}</p>
+                      </div>
+
+                      {% for g in days.3 %}
+                      {% if g.0.personal_id != none %}
+
+                      <a tabindex="0" class="btn btn-sm btnguard" role="button" data-html='true' data-bs-toggle="popover" data-bs-trigger="hover" title="{{g.0.guard_id.service_id.department_id.name}}, {{g.0.guard_id.name}}"
+                        data-bs-content="{% if g.1 %}{% for x in g%}{{x.personal_id.last_name}}, {{x.personal_id.name}} / {% endfor %}{% else %}{{g.0.personal_id.last_name}}, {{g.0.personal_id.name}}{% endif %}" style=>
+                        <input type="text" class="shift" name="" id="shift{{days.0}}" value="{{g.0.shift}}" hidden>
+                        <input type="text" class="month_year" name="" id="shift{{days.0}}" value="{{g.0.month_year}}" hidden>
+                        <input type="text" class="is_working_day" name="" id="shift{{days.0}}" value="{{g.0.is_working_day}}" hidden>
+                        <input type="text" class="guard_id" name="" id="box{{days.0}}" value="{{g.0.guard_id.id}}" hidden>
+                        <input type="text" class="date" name="" id="date{{days.0}}" value="{{g.0.date|date:'Y-m-d'}}" hidden>
+                        <input type="text" class="service" name="" id="service{{days.0}}" value="{{g.0.guard_id.service_id.id}}" hidden>
+                        <input type="text" class="department" name="" id="department{{days.0}}" value="{{g.0.guard_id.service_id.department_id.id}}" hidden>
+                      </a>
+                      {% endif %}
+                      {% endfor %}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock %}

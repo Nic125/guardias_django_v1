@@ -1,0 +1,147 @@
+form table tr th{
+  vertical-align: middle;
+ }
+
+form table tr td{
+ vertical-align: middle;
+}
+
+form select{
+  margin-top: 5px;
+  margin-bottom: 5px;
+ }
+
+.save_plan{
+  float: right;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  width: 30%;
+}
+
+.asidesheet input{
+  width: 95%;
+  margin-bottom: 10px;
+}
+
+.asidesheet label{
+  margin-bottom: 0px;
+}
+
+.asidesheet select{
+  width: 95%;
+  margin-bottom: 10px;
+}
+
+form p svg{
+  color: darkgreen;
+  margin-right: 10px;
+  margin-top: -5px;
+}
+
+button{
+  box-shadow: 2px 2px 4px lightgrey;
+}
+
+.content{
+  border: 2px dashed #019463;
+  border-radius: 5px;
+  padding: 10px;
+  height: 100%;
+  width: 99%;
+  padding-left: 0px;
+  overflow-x: scroll;
+
+}
+
+
+table {
+  width: 100%;
+}
+
+th{
+ text-align: right;
+ border-right: 2px solid lightgrey;
+ vertical-align:middle;
+}
+
+td{
+  border-right: 2px dashed lightgrey;
+}
+
+th .p_name_day{
+  margin-top: -20px;
+  margin-bottom: -5px;
+  color: #009A00;
+}
+
+th .p_number{
+  font-size: 23px;
+  margin-top: -15px;
+  color: #006400;
+
+}
+
+table thead tr .people_title{
+  background: #019463;
+  color: white;
+  margin-right: 0px;
+}
+
+table tbody tr .names{
+  background: aquamarine;
+}
+
+
+table td {
+  background: #fff;
+  padding: 4px 5px;
+  text-align: center;
+}
+
+table thead th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+
+}
+
+table tbody th {
+  position: sticky;
+  left: 0;
+  background: white;
+  z-index: 1;
+
+}
+
+@media (max-width: 1597px) {
+  .asidesheet input{
+    width: 150px;
+    font-size: 12px;
+  }
+  label{
+    font-size: 12px;
+  }
+  .asidesheet select{
+    width: 150px;
+    font-size: 12px;
+  }
+
+}
+
+@media (max-width: 1380px) {
+  .asidesheet input{
+    width: 165px;
+    font-size: 12px;
+  }
+  label{
+    font-size: 12px;
+  }
+  .day{
+    min-height: 100px;
+  }
+  .asidesheet select{
+    width: 165px;
+    font-size: 12px;
+  }
+
+}

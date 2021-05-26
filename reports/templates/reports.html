@@ -1,0 +1,122 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+
+<link href="{% static 'css/reports.css' %}" rel="stylesheet">
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h4 class="h4">Informes</h4>
+</div>
+<div class="row">
+  <div class="col-2">
+    <div class="asidesheet">
+      <div class="menu_input position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" id="department" aria-current="page" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-check" viewBox="0 0 16 16">
+                <path d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
+                <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+              </svg>
+              Planificaciones
+            </a>
+          </li>
+          <hr>
+          <li class="nav-item">
+            <a class="nav-link" id="service" aria-current="page" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calculator" viewBox="0 0 16 16">
+                <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z"/>
+              </svg>
+              Puntaje mensual
+            </a>
+          </li>
+          <hr>
+          <li class="nav-item">
+            <a class="nav-link" id="guard" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+              </svg>
+              ¿¿??
+            </a>
+          </li>
+          <hr>
+          <li class="nav-item">
+            <a class="nav-link" id="personal" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+              </svg>
+              ¿¿??
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-10 inputbox">
+    <div class="content">
+
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">OP</th>
+                    <th scope="col">Legajo</th>
+                    <th scope="col">D</th>
+                    <th scope="col">Apellido, Nombre</th>
+                    <th scope="col">Mesa</th>
+                    <th scope="col">Función</th>
+                    <th scope="col">Servicio</th>
+                    <th scope="col">Readec</th>
+                    <th scope="col">Licencias tipo/fecha</th>
+                    <th scope="col">Total puntos activa</th>
+                    <th scope="col">Puntos act. días hábiles</th>
+                    <th scope="col">Puntos act. días no hábiles</th>
+                    <th scope="col">Total puntos pasiva</th>
+                    <th scope="col">Puntos pas. días hábiles</th>
+                    <th scope="col">Puntos pas. días no hábiles</th>
+                  </tr>
+                </thead>
+
+
+              <tbody>
+                  <tr>
+                    {% if info %}
+                    {% for x in info %}
+                    <td scope="row">28</td>
+                    <td>{{x.0.file}}</td>
+                    <td>{{x.0.d}}</td>
+                    <td>{{x.0.last_name}}, {{x.0.name}}</td>
+                    <td>17</td>
+                    <td>44Hs</td>
+                    <td>{{x.0.service_id.name}}</td>
+                    <td> </td>
+                    <td>{% if x.7.0.from_date %}{{x.7.0.license_id.name}}: {{x.7.0.from_date.day}}/{{x.7.0.from_date.month}}, {{x.7.0.till_date.day}}/{{x.7.0.till_date.month}}{% endif %}</td>
+                    <td>{{x.3}}</td>
+                    <td>{{x.1.1}}</td>
+                    <td>{{x.2.1}}</td>
+                    <td>{{x.6}}</td>
+                    <td>{{x.4.1}}</td>
+                    <td>{{x.5.1}}</td>
+                  </tr>
+                  {% endfor %}
+                  {% endif %}
+                </tbody>
+
+
+              </table>
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+
+{% endblock %}

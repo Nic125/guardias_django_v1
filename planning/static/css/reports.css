@@ -1,0 +1,117 @@
+.asidesheet input{
+  width: 95%;
+  margin-bottom: 10px;
+}
+
+.asidesheet label{
+  margin-bottom: 0px;
+}
+
+
+.asidesheet select{
+  width: 95%;
+  margin-bottom: 10px;
+
+}
+
+.menu_input {
+  height: 200px;
+}
+
+.menu_input ul li a{
+  color: black;
+}
+
+.menu_input ul hr{
+  width: 90%;
+  color: #BFBFBF
+}
+
+.menu_input ul li a svg{
+  margin-right: 5px;
+  margin-top: -3px;
+  color:darkgreen;
+}
+
+.inputbox {
+
+  height: 100%;
+}
+
+form p svg{
+  color: darkgreen;
+  margin-right: 10px;
+  margin-top: -5px;
+}
+
+button{
+  box-shadow: 2px 2px 4px lightgrey;
+
+}
+
+.content{
+  height: 100%;
+  width: 100%;
+  border-left: dashed 1px lightgrey;
+  padding: 10px;
+  padding-left: 10px;
+}
+
+
+.content .accordion .accordion-item h2 button{
+  height: 35px;
+  font-size: 14px;
+}
+
+table tr th{
+  vertical-align: middle;
+ }
+
+table tr td{
+ vertical-align: middle;
+}
+
+th{
+  text-align: center;
+  font-size: 10px;
+  border: 1px solid lightgrey;
+}
+
+td {
+  text-align: center;
+  font-size: 12px;
+  border: 1px solid lightgrey;
+}
+
+@media (max-width: 1597px) {
+  .asidesheet input{
+    width: 150px;
+    font-size: 12px;
+  }
+  label{
+    font-size: 12px;
+
+  }
+  .asidesheet select{
+    width: 150px;
+    font-size: 12px;
+  }
+
+}
+
+@media (max-width: 1380px) {
+  .asidesheet input{
+    width: 165px;
+    font-size: 12px;
+  }
+  label{
+    font-size: 12px;
+
+  }
+
+  .asidesheet select{
+    width: 165px;
+    font-size: 12px;
+  }
+
+}

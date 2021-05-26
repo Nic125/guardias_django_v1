@@ -1,0 +1,504 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<link href="{% static 'css/planning.css' %}" rel="stylesheet">
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h4 class="h4">Planificación{% if l_days %} - {{guardm}} / {{month}} {{year}}{% endif %}{% if multiple_days %} - {{guardm}} / {{month}} {{year}}{% endif %}</h4>
+</div>
+<div class="row">
+  <div class="col-2">
+    <div class="asidesheet">
+
+
+      <!-- ------------------------------------------------CREATE PLANNING----------------------------------------------------------------------------------- -->
+
+      <form action="" method="POST">{% csrf_token %}
+        <div class="create_planning">
+          <input type="text" name="department" id="dep_upd" value="" hidden>
+          <p style="margin-top:10px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+              <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z" />
+              <path
+                d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+            </svg>Crear planificación</p>
+          <select class="select form-select-sm" name="month" id="datemonth" aria-label="Default select example" required>
+            <option value="" hidden>Seleccione mes</option>
+            <option value="{{month_list.0}}">
+              <-- {{month_list.1}}</option>
+            <option value="{{month_list.2}}">{{month_list.3}}</option>
+            <option value="{{month_list.4}}">{{month_list.5}} --></option>
+          </select>
+          <select class="select form-select-sm" name="department" id="department_menu" aria-label="Default select example" required>
+            <option value="" selected hidden>Seleccione departamento</option>
+            {% if departments %}
+            {% for entry in departments %}
+            <option value="{{entry.id}}">{{entry}}</option>
+            {% endfor %}
+            {% endif %}
+          </select>
+          <select class="select form-select-sm" name="service" id="service_menu" aria-label="Default select example" required>
+            <option value="" hidden>Seleccione servicio</option>
+          </select>
+          <select class="select form-select-sm" name="selected_guard_menu" id="guard_menu" aria-label="Default select example" required>
+            <option value="" hidden>Seleccione guardia</option>
+          </select>
+
+          <button type="submit" name="actualizar" class="buttonsheet btn btn-outline-success btn-sm" id="update">Abrir</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+  <!-- ---------------------------CENTRAL CONTENT------------------------- -->
+  <div class="col-10 inputbox">
+    {% if messages %}
+    {% for message in messages %}
+    <p style="margin-left: 30px;">{{message}}</p>
+    {% endfor %}
+    {% endif %}
+
+    {% if not l_days and not multiple_days %}
+    {% if current_month_guard %}
+    <div class="current_month">
+      <div class="title">
+        <button id="previous" type="button" class="btn btn-outline-success btn-sm" title="Ir al mes anterior" name="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"/>
+        </svg></button><h6>Guardias de {{current_month_guard.0.0}}</h6>
+    </div>
+    <div class="">
+      {% for guard in current_month_guard %}
+      {% if guard.4.0.3 or guard.4.1.3 or guard.4.2.3 or guard.4.3.3 or guard.4.4.3 %}
+      <div class="this_month_guards">
+        <button class="btn btn-outline-success btn-sm monthly_guards" style="width:99%" type="button" data-bs-toggle="collapse" data-bs-target="#collapse0{{guard.1}}" aria-expanded="false" aria-controls="collapse0{{guard.1}}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+          </svg>{{guard.3}} - {{guard.2}}
+        </button>
+        <div class="collapse" id="collapse0{{guard.1}}">
+          <div class="monthly_guards_table" style="width:99%">
+            <table class="table">
+              <thead>
+                <tr>
+                  {% for day in guard.4 %}
+                  <th scope="col" {% if day.2 != 'Hábil' %}style="background:#BEE5D3"{% else %}style="background:#EDF1EF"{% endif %}>
+                    <div class="" style="width:80px;">
+                      {% if day.2 == "Feriado" %}
+                    <div class="working_day">
+                      {{day.2}}
+                    </div>
+                    {% endif %}
+                    <div class="number_day">
+                      {{day.0}}
+                    </div>
+                    <div class="name_day">
+                      {{day.1}}
+                    </div>
+                    </div>
+                  </th>
+                  {% endfor %}
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {% for day in guard.4 %}
+                  <td>
+                    {% if day.3 %}
+                    {% for d in day.3 %}
+
+                    <div class="name_personal">
+                    {% if d.shift != "24" and d.shift != "12" %}
+                    <div class="box_day" style="display:flex">
+
+                    {% if d.shift == "Turno mañana"%}
+                    <div class="morning_p">
+                      M
+                    </div>
+                    {% elif d.shift == "Turno tarde"%}
+                    <div class="afternoon_p">
+                      T
+                    </div>
+                    {% elif d.shift == "Turno noche"%}
+                    <div class="night_p">
+                      N
+                    </div>
+                    {% endif %}
+                    {% if d.is_extra != "no" %}
+                    <div class="extra">
+                      E
+                    </div>
+
+                    {% endif %}
+                    </div>
+                    {% endif %}
+                    {% if d.is_active == "activa"%}
+                    <div class="box_day" style="display:flex">
+                    <div class="active">
+                      A
+                    </div>
+                    </div>
+                    {% elif d.is_active == "pasiva" and d.shift == "24" or d.shift == "12" %}
+                    <div class="box_day" style="display:flex">
+                    <div class="pasive">
+                      P
+                    </div>
+                    </div>
+                    {% endif %}
+                      {{d.personal_id.name}}, {{d.personal_id.last_name}}
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="name_personal_no_data">
+
+                      <div class="no_data">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-file-earmark-x" viewBox="0 0 16 16">
+                          <path d="M6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146z"/>
+                          <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                        </svg>
+
+                      </div>
+                    </div>
+                    {% endif %}
+
+                  </td>
+
+                  {% endfor %}
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    </div>
+
+    {% endif %}
+
+
+    {% if previous_month_guards %}
+    <div class="last_month" style="display:none">
+      <div class="title">
+        <button id="actual" type="button" class="btn btn-outline-success btn-sm" title="Ir al mes actual" name="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"/>
+  </svg></button><h6>Guardias de {{previous_month_guards.0.0}}</h6>
+    </div>
+    <div class="">
+      {% for guard in previous_month_guards %}
+      {% if guard.4.0.3 or guard.4.1.3 or guard.4.2.3 or guard.4.3.3 or guard.4.4.3 %}
+      <div class="this_month_guards">
+        <button class="btn btn-outline-success btn-sm monthly_guards" style="width:99%" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{guard.1}}" aria-expanded="false" aria-controls="collapse{{guard.1}}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+          </svg>{{guard.3}} - {{guard.2}}
+        </button>
+        <div class="collapse" id="collapse{{guard.1}}">
+          <div class="monthly_guards_table" style="width:99%">
+            <table class="table">
+              <thead>
+                <tr>
+                  {% for day in guard.4 %}
+                  <th scope="col" {% if day.2 != 'Hábil' %}style="background:#BEE5D3"{% else %}style="background:#EDF1EF"{% endif %}>
+                    <div class="" style="width:80px;">
+                      {% if day.2 == "Feriado" %}
+                    <div class="working_day">
+                      {{day.2}}
+                    </div>
+                    {% endif %}
+                    <div class="number_day">
+                      {{day.0}}
+                    </div>
+                    <div class="name_day">
+                      {{day.1}}
+                    </div>
+                    </div>
+                  </th>
+                  {% endfor %}
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {% for day in guard.4 %}
+                  <td>
+                    {% if day.3 %}
+                    {% for d in day.3 %}
+                    <div class="name_personal">
+                    {% if d.shift != "24" and d.shift != "12" %}
+                    <div class="box_day" style="display:flex">
+
+                    {% if d.shift == "Turno mañana"%}
+                    <div class="morning_p">
+                      M
+                    </div>
+                    {% elif d.shift == "Turno tarde"%}
+                    <div class="afternoon_p">
+                      T
+                    </div>
+                    {% elif d.shift == "Turno noche"%}
+                    <div class="night_p">
+                      N
+                    </div>
+                    {% endif %}
+                    {% if d.is_extra != "no" %}
+                    <div class="extra">
+                      E
+                    </div>
+
+                    {% endif %}
+                    </div>
+                    {% endif %}
+                    {% if d.is_active == "activa"%}
+                    <div class="box_day" style="display:flex">
+                    <div class="active">
+                      A
+                    </div>
+                    </div>
+                    {% elif d.is_active == "pasiva" and d.shift == "24" or d.shift == "12" %}
+                    <div class="box_day" style="display:flex">
+                    <div class="pasive">
+                      P
+                    </div>
+                    </div>
+                    {% endif %}
+                      {{d.personal_id.name}}, {{d.personal_id.last_name}}
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="name_personal_no_data">
+
+                      <div class="no_data">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-file-earmark-x" viewBox="0 0 16 16">
+                          <path d="M6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146z"/>
+                          <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                        </svg>
+
+                      </div>
+                    </div>
+                    {% endif %}
+                  </td>
+
+                  {% endfor %}
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    </div>
+
+    {% endif %}
+
+    {% endif %}
+
+
+    <!-- ---------------------------24 - 12 HOURS GUARDS------------------------- -->
+
+
+
+
+    {% if l_days %}
+    <form class="" action="" method="post">{% csrf_token %}
+      <input type="text" name="selected_guard_id" value="{{guardm.id}}" hidden>
+      <div class="content">
+
+        <table class="table">
+          <thead>
+            <tr class="tr">
+              <th class="people_title"> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                  <path
+                    d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+                </svg></th>
+              {% for day in l_days %}
+              <th class="data" style="background: #BEE5D3; height:60px;">
+                <p class="p_number">{{day.0}}</p>
+                <p class="p_name_day">{{day.1}}</p>
+              </th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for person in personal %}
+            <tr class="tr">
+              <th class="th names">
+                <div class="" style="width:200px">
+                  {{person.last_name}}, {{person.name}}
+                </div>
+              </th>
+              {% for day in l_days%}
+              <td {% if day.2 != 'Hábil' %} style="background:#E3EBE8" {% endif %}>
+                <input type="text" name="m{{person.id}}d{{day.3}}" value="{{person.id}}" hidden>
+                <input type="text" name="workd{{person.id}}d{{day.3}}" value="{{day.2}}" hidden>
+                <div class="td" style="width:30px; height: 40px;">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input select_day_single"
+                    type="checkbox"
+                    name="select_day{{person.id}}d{{day.3}}"
+                    id="select_dayp{{person.id}}d{{day.3}}"
+                    {% if person.id in day.4 %}checked{% endif %}>
+                    <label class="form-check-label" for="select_day"></label>
+                  </div>
+                  <div class="shift2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                  </div>
+                </div>
+              </td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+
+
+      </div>
+      <button type="submit" class="btn btn-outline-success btn-sm" name="guardar_guardias" id="save_month_sheet" onclick="return confirm('¿esta seguro de guardar la planilla?')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+          <path
+            d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z" />
+        </svg>Guardar
+      </button>
+
+    </form>
+    {% endif %}
+
+
+
+
+
+    <!-- ---------------------------8 HOURS GUARDS WITH SHIFTS------------------------- -->
+
+
+
+    {% if multiple_days %}
+    <form class="" action="" method="post">{% csrf_token %}
+      <input type="text" name="selected_guard_id" value="{{guardm.id}}" hidden>
+      <div class="content">
+
+        <table class="table">
+          <thead>
+            <tr class="tr">
+              <th class="people_title"> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                  <path
+                    d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+                </svg></th>
+              {% for day in multiple_days %}
+              <th class="data" colspan="3" style="background: #BEE5D3; border-right: 2px solid grey;">
+
+
+
+                <p class="p_number">{{day.0}}</p>
+                <p class="p_name_day">{{day.1}}</p>
+              </th>
+              {% endfor %}
+            </tr>
+
+          </thead>
+          <tbody>
+
+            {% for person in personal %}
+            <tr class="tr" style="border-top: 2px solid grey">
+              <th class="th names">
+                <div class="" style="width:200px">
+                  {{person.last_name}}, {{person.name}}
+                </div>
+              </th>
+
+              {% for day in multiple_days%}
+              <td {% if day.2 != 'Hábil' %} style="background:#E3EBE8" {% endif %}>
+                <input type="text" name="m{{person.id}}d{{day.3}}" value="{{person.id}}" hidden>
+                <input type="text" name="workd{{person.id}}d{{day.3}}" value="{{day.2}}" hidden>
+                <div class="td" style="width:60px; height: 40px;">
+                  <div class="morning shift">M</div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input select_day"
+                    type="checkbox" name="morning{{person.id}}d{{day.3}}"
+                    is="morning{{person.id}}d{{day.3}}" value="on"
+                    {% if person.id in day.4 %}checked{% endif %}>
+                    <label class="form-check-label" for="select_day"></label>
+                  </div>
+                  <div class="form-check extra_day_div">
+                    <input class="form-check-input extra_day" type="checkbox"
+                    name="morning_extra{{person.id}}d{{day.3}}" value="on"
+                    id="defaultCheck1" {% if 'yes' in day.4 and person.id in day.4 %}checked{% endif %} disabled>
+                    <label class="form-check-label" for="defaultCheck1">
+                      <i>Extra</i>
+                    </label>
+                  </div>
+              </td>
+              <td {% if day.2 != 'Hábil' %} style="background:#E3EBE8;" {% endif %}>
+                <input type="text" name="workdt{{person.id}}d{{day.3}}" value="{{day.2}}" hidden>
+                <input type="text" name="t{{person.id}}d{{day.3}}" value="{{person.id}}" hidden>
+                <div class="td" style="width:60px; height: 40px;">
+                  <div class="afternoon shift">T</div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input select_day"
+                    type="checkbox" name="afternoon{{person.id}}d{{day.3}}"
+                    id="afternoon{{person.id}}d{{day.3}}" value="on"
+                    {% if person.id in day.5 %}checked{% endif %}>
+                    <label class="form-check-label" for="select_day"></label>
+                  </div>
+                  <div class="form-check extra_day_div">
+                    <input class="form-check-input extra_day" type="checkbox"
+                    name="afternoon_extra{{person.id}}d{{day.3}}" value="on"
+                    id="defaultCheck1" {% if 'yes' in day.5 and person.id in day.5 %}checked{% endif %} disabled>
+                    <label class="form-check-label" for="defaultCheck1">
+                      <i>Extra</i>
+                    </label>
+                  </div>
+              </td>
+              <td {% if day.2 != 'Hábil' %}style="background:#E3EBE8;
+                border-right: 2px solid grey;" {% else %} style="border-right: 2px solid grey;" {% endif %}>
+                <input type="text" name="workdn{{person.id}}d{{day.3}}" value="{{day.2}}" hidden>
+                <input type="text" name="n{{person.id}}d{{day.3}}" value="{{person.id}}" hidden>
+                <div class="td" style="width:60px; height: 40px;">
+                  <div class="night shift">N</div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input select_day"
+                    type="checkbox" name="night{{person.id}}d{{day.3}}"
+                    id="night{{person.id}}d{{day.3}}" value="on"
+                    {% if person.id in day.6 %}checked{% endif %}>
+                    <label class="form-check-label" for="select_day"></label>
+                  </div>
+                  <div class="form-check extra_day_div">
+                    <input class="form-check-input extra_day" type="checkbox"
+                    name="night_extra{{person.id}}d{{day.3}}" value="on"
+                    id="defaultCheck1" {% if 'yes' in day.6 and person.id in day.6 %}checked{% endif %} disabled>
+                    <label class="form-check-label" for="defaultCheck1">
+                      <i>Extra</i>
+                    </label>
+                  </div>
+              </td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+
+
+      </div>
+      <button type="submit" class="btn btn-outline-success btn-sm" name="multiple_guards" id="save_month_sheet" onclick="return confirm('¿esta seguro de guardar la planilla?')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+          <path
+            d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z" />
+        </svg>Guardar
+      </button>
+
+    </form>
+    {% endif %}
+
+  </div>
+</div>
+
+{% endblock %}

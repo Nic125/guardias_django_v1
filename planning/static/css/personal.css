@@ -1,0 +1,188 @@
+.asidesheet input{
+  width: 95%;
+  margin-bottom: 10px;
+}
+
+.asidesheet label{
+  margin-bottom: 0px;
+}
+
+
+.asidesheet select{
+  width: 95%;
+  margin-bottom: 10px;
+
+}
+
+.d-flex h4{
+  color:darkgreen;
+}
+
+.row{
+  height: 100%;
+}
+
+.separator{
+  border-left: dashed 1px #DDDCDC;
+}
+
+.menu_input {
+  height: 200px;
+}
+
+.inputbox {
+
+  height: 100%;
+}
+
+.asidetitle{
+
+}
+
+p{
+  margin-top: 10px;
+}
+
+h6{
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+h6 svg, p svg{
+  color: darkgreen;
+  margin-right: 10px;
+  margin-top: -5px;
+}
+
+button{
+  box-shadow: 2px 2px 4px lightgrey;
+
+}
+
+.contentrow{
+  margin-left: 2px;
+}
+
+.content{
+  height: 100%;
+  width: 100%;
+  border-left: dashed 1px lightgrey;
+  padding: 10px;
+  padding-left: 10px;
+}
+
+.details{
+  padding-left: 20px;
+  border-left: 1px dashed lightgrey;
+}
+
+.name{
+  display: flex;
+}
+.name .icon{
+  padding: 5px;
+  box-shadow: 2px 2px 4px lightgrey;
+  border-radius: 3px;
+  height: 33px;
+}
+.name svg{
+  margin-top: -2px;
+  color:darkgreen;
+}
+
+.lic .icon{
+  padding: 5px;
+  box-shadow: 2px 2px 4px lightgrey;
+  border-radius: 3px;
+}
+
+.lic-2{
+  display: flex;
+}
+
+.lic{
+  border-left: 1px dashed lightgrey;
+  padding-left: 20px;
+  display: none;
+}
+
+.lic svg{
+  margin-top: -2px;
+  color:darkgreen;
+}
+
+.lic select{
+  width: 155px;
+}
+
+#table_lic{
+  width: 100%;
+}
+
+.name h6{
+  margin-top: 5px;
+  margin-left: 20px;
+}
+.lic h6{
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+.list-group{
+  margin-right: 15px;
+  display: block;
+}
+
+.table{
+  display:none;
+}
+
+.details{
+  display: none;
+}
+
+#drop_p{
+  margin-left: 10px;
+  background-color: darkgreen;
+  color:white;
+}
+
+#drop_p svg{
+  margin-top: -3px;
+  margin-right: 5px;
+  color:yellow;
+}
+
+
+@media (max-width: 1597px) {
+  .asidesheet input{
+    width: 150px;
+    font-size: 12px;
+  }
+  label{
+    font-size: 12px;
+
+  }
+  .asidesheet select{
+    width: 150px;
+    font-size: 12px;
+  }
+
+}
+
+@media (max-width: 1380px) {
+  .asidesheet input{
+    width: 165px;
+    font-size: 12px;
+  }
+  label{
+    font-size: 12px;
+
+  }
+
+  .asidesheet select{
+    width: 165px;
+    font-size: 12px;
+  }
+
+}

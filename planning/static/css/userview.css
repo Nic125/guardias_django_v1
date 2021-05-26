@@ -1,0 +1,286 @@
+body{
+
+}
+
+nav{
+  background: #184d47;
+  padding: 5px;
+  position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+}
+
+.day_guards{
+
+}
+
+.user_name{
+margin-top: 5px;
+margin-left: 5px;
+margin-bottom: -10px;
+color: white;
+}
+
+.user_name p svg{
+  margin-top: -5px;
+  margin-right: 5px;
+}
+
+.user_month_plan{
+  padding: 5px;
+  width: 60px;
+  float: right;
+  background-color: #F7F7E8;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: -25px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #96bb7c;
+  box-shadow: 2px 2px 5px grey;
+}
+
+.user_month_plan svg{
+  color:#798777;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.user_month_plan p{
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+
+.user_month_plan2{
+  display:none;
+  padding: 5px;
+  width: 60px;
+  float: right;
+  background-color: #F7F7E8;
+  text-align: center;
+  border-radius: 5px;
+  margin-top: -25px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #96bb7c;
+  box-shadow: 2px 2px 5px grey;
+}
+
+.user_month_plan2 svg{
+  color:#798777;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.user_month_plan2 p{
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+
+.user_next{
+  background-color: #E8E8DD;
+  padding: 2px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 2px solid #3a6351;
+}
+
+.user_next p{
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.user_next p svg{
+  margin-right: 5px;
+  margin-top: -3px;
+}
+
+/* -------------------------DAY GUARDS------------------------------------ */
+
+.date{
+  text-align: center;
+  background: #5aa469;
+  border: 1px solid #5aa469;
+  border-left: : 0px solid white;
+  color: white;
+  padding-bottom: 1px;
+  padding-top: 1px;
+  margin-bottom: 10px;
+}
+
+.box{
+  width: 100%;
+  border-bottom: 1px dashed green;
+  border-radius: 0px;
+
+}
+
+.box a{
+float: right;
+  margin-top:5px;
+  background-color: #1CC685;
+  border: 2px solid #19B177;
+  border-radius: 10px;
+  color:white;
+  padding:8px;
+  padding-left: 13px;
+  padding-right: 13px;
+  box-shadow: 2px 2px 5px grey;
+
+}
+
+.box .next_guards{
+  float: right;
+  background-color: white;
+  border: 2px solid #19B177;
+  border-radius: 10px;
+  color:black;
+  padding:8px;
+  padding-left: 13px;
+  padding-right: 13px;
+  box-shadow: 2px 2px 5px grey;
+  margin-right: 0px;
+}
+
+.box h5{
+
+
+}
+.box p{
+
+
+}
+
+.show_box p .info{
+  float: left;
+  margin-right: 10px;
+  margin-top:5px;
+  color: darkgreen;
+
+}
+
+.date_c h5{
+  width: 100%;
+  margin-top: 10px;
+}
+
+.date_c{
+  width: 95%;
+  margin-left: 10px;
+  margin-top: 5px;
+  text-align: center;
+  background: #5aa469;
+  border: 1px solid #5aa469;
+  border-left: : 0px solid white;
+  color: white;
+  padding-bottom: 1px;
+  padding-top: 1px;
+  margin-bottom: 10px;
+
+}
+
+.col .box{
+  width: 100%;
+  padding: 5px;
+  border-bottom: 1px dashed green;
+  border-radius: 0px;
+  margin:0px;
+}
+
+.col .box p{
+  float: left;
+  margin-right: 20px;
+}
+
+/* -------------------------DAY GUARDS------------------------------------ */
+.total{
+  display:none;
+}
+
+.total_month{
+  width: 95%;
+  margin-left: 15px;
+}
+
+.month{
+  background: #F7F7E8;
+  width: 120px;
+  height: 40px;
+  margin-top: 470px;
+  position:fixed;
+  left: 250px;
+  top:110px;
+  box-shadow: 4px 4px 7px grey;
+  border: 2px solid #96bb7c;
+  border-radius: 5px;
+  display:none;
+}
+
+.month h5{
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.guard_btn{
+  margin-left: 10px;
+  width: 94%;
+  text-align: left;
+  box-shadow: 2px 2px 5px grey;
+}
+
+.day_entry{
+  background: #F2F2F1;
+  padding: 3px;
+  margin-left: 10px;
+  width: 94%;
+  border-bottom: 1px dashed  #96bb7c;
+
+}
+
+.day_entry p {
+  margin-left: 20px;
+  margin-bottom: 3px;
+  margin-top: 3px;
+}
+
+.day_entry_user{
+  background: #96bb7c;
+  padding: 3px;
+  margin-left: 10px;
+  width: 94%;
+  border-bottom: 1px dashed  #96bb7c;
+
+}
+
+.day_entry_user p {
+  margin-left: 20px;
+  margin-bottom: 3px;
+  margin-top: 3px;
+}
+
+.day_entry_user p svg{
+  margin-top: -3px;
+  margin-left: 5px;
+
+}
+
+
+
+.total_month h5 svg{
+  margin-top: -5px;
+  margin-right: 10px;
+}
+
+.guard_total{
+  width: 95%;
+
+}
+
+.guard_total h6{
+  margin-top: 5px;
+}
+
+hr{
+  width: 60%
+}

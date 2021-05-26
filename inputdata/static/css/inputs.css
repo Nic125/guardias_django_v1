@@ -1,0 +1,306 @@
+.d-flex h4{
+  color:darkgreen;
+}
+
+.row{
+  height: 100%;
+}
+
+.separator{
+  border-left: dashed 1px #DDDCDC;
+}
+
+.menu_input {
+  height: 200px;
+}
+
+.menu_input ul li a{
+  color: black;
+}
+
+.menu_input ul hr{
+  width: 90%;
+  color: #BFBFBF
+}
+
+.menu_input ul li a svg{
+  margin-right: 5px;
+  margin-top: -3px;
+  color:darkgreen;
+}
+
+.inputbox {
+  border-left: dashed 1px lightgrey;
+  height: 100%;
+}
+
+/* -------------------------------------------DEPARTMENT------------------------------------------------- */
+.department {
+  display:none;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.department h6 svg{
+  margin-right: 10px;
+  margin-top: -5px;
+  width: 18px;
+  height: 18px;
+  color:darkgreen;
+
+}
+
+.department .row{
+  margin-top: 20px;
+}
+
+.department input{
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.department button{
+  margin-top: 10px;
+  margin-right: 5px;
+  box-shadow: 2px 2px 4px lightgrey;
+}
+
+/* -------------------------------------------SERVICE------------------------------------------------- */
+.service {
+  display:none;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.service h6 svg{
+  margin-right: 10px;
+  margin-top: -5px;
+  width: 18px;
+  height: 18px;
+  color:darkgreen;
+
+}
+
+.service .row{
+  margin-top: 20px;
+}
+
+.service input{
+  width: 100%;
+}
+
+.service label{
+margin-bottom: 10px;
+}
+
+.service select{
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.service button{
+  margin-top: 20px;
+  margin-right: 5px;
+  box-shadow: 2px 2px 4px lightgrey;
+}
+
+/* -------------------------------------------GUARD------------------------------------------------- */
+.guard {
+  display:none;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.guard h6 svg{
+  margin-right: 10px;
+  margin-top: -5px;
+  width: 18px;
+  height: 18px;
+  color:darkgreen;
+
+}
+
+.guard .row{
+  margin-top: 20px;
+}
+
+.guard input{
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.guard select{
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.guard button{
+  margin-top: 10px;
+  margin-right: 5px;
+  box-shadow: 2px 2px 4px lightgrey;
+}
+
+/* -------------------------------------------PERSONAL------------------------------------------------- */
+.personal {
+  display:none;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.personal h6 svg{
+  margin-right: 10px;
+  margin-top: -5px;
+  width: 18px;
+  height: 18px;
+  color:darkgreen;
+
+}
+
+.personal .row{
+  margin-top: 20px;
+}
+
+.personal input{
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.personal .checkpro{
+  width:inherit;
+  width: 14px;
+}
+
+.personal select{
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.personal button{
+  margin-top: 10px;
+  margin-right: 5px;
+  box-shadow: 2px 2px 4px lightgrey;
+}
+
+/* -------------------------------------------NOTWORKING------------------------------------------------- */
+.notworking {
+  display:none;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.notworking h6 svg{
+  margin-right: 10px;
+  margin-top: -5px;
+  width: 18px;
+  height: 18px;
+  color:darkgreen;
+
+}
+
+.notworking .row{
+  margin-top: 20px;
+}
+
+.notworking input{
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.notworking button{
+  margin-top: 10px;
+  margin-right: 5px;
+  box-shadow: 2px 2px 4px lightgrey;
+}
+
+/* -------------------------------------------LICENCES------------------------------------------------- */
+.licences {
+  display:none;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.licences h6 svg{
+  margin-right: 10px;
+  margin-top: -5px;
+  width: 18px;
+  height: 18px;
+  color:darkgreen;
+
+}
+
+.licences .row{
+  margin-top: 20px;
+}
+
+.licences input{
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.licences button{
+  margin-top: 10px;
+  margin-right: 5px;
+  box-shadow: 2px 2px 4px lightgrey;
+}
+
+/* -------------------------------------------POINTS------------------------------------------------- */
+.points {
+  display:none;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.points h6 svg{
+  margin-right: 10px;
+  margin-top: -5px;
+  width: 18px;
+  height: 18px;
+  color:darkgreen;
+
+}
+
+.points .row{
+  margin-top: 20px;
+}
+
+.points input{
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.points select{
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.points button{
+  margin-top: 10px;
+  margin-right: 5px;
+  box-shadow: 2px 2px 4px lightgrey;
+}
+
+
+
+@media (max-width: 1387px) {
+
+  .menu_input ul li a{
+    font-size: 10px;
+  }
+
+  .menu_input ul li a svg{
+    width: 14px;
+  }
+
+}
+
+@media (max-width: 1139px) {
+
+  .menu_input ul li a{
+    font-size: 8px;
+  }
+
+  .menu_input ul li a svg{
+    width: 12px;
+  }
+
+}

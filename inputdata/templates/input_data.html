@@ -1,0 +1,394 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<link href="{% static 'css/inputs.css' %}" rel="stylesheet">
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h4 class="h4">Carga de datos</h4>
+</div>
+<div class="row">
+  <div class="col-2">
+    <div class="menu_input position-sticky pt-3">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link" id="department" aria-current="page" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694L1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z" />
+              <path
+                d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z" />
+            </svg>
+            Departamentos
+          </a>
+        </li>
+        <hr>
+        <li class="nav-item">
+          <a class="nav-link" id="service" aria-current="page" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+              <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
+              <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z" />
+            </svg>
+            Servicios
+          </a>
+        </li>
+        <hr>
+        <li class="nav-item">
+          <a class="nav-link" id="guard" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-plus" viewBox="0 0 16 16">
+              <path
+                d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
+              <path d="M8 4.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V9a.5.5 0 0 1-1 0V7.5H6a.5.5 0 0 1 0-1h1.5V5a.5.5 0 0 1 .5-.5z" />
+            </svg>
+            Guardias / turnos
+          </a>
+        </li>
+        <hr>
+        <li class="nav-item">
+          <a class="nav-link" id="personal" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+              <path
+                d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+            </svg>
+            Personal
+          </a>
+        </li>
+        <hr>
+        <li class="nav-item">
+          <a class="nav-link" id="notworking" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-x" viewBox="0 0 16 16">
+              <path d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z"/>
+              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+            </svg>
+            Feriados
+          </a>
+        </li>
+        <hr>
+        <li class="nav-item">
+          <a class="nav-link" id="licences" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
+              <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V5.5zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+              <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+            </svg>
+            Licencias
+          </a>
+        </li>
+        <hr>
+        <li class="nav-item">
+          <a class="nav-link" id="points" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calculator" viewBox="0 0 16 16">
+              <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+              <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z"/>
+            </svg>
+            Puntaje
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-10 inputbox">
+    <!-------------------------------------------------------- DEPARTMENT -------------------------------------------------->
+    <div class="department">
+      <h6><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694L1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z" />
+          <path
+            d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z" />
+        </svg>Departamentos</h6>
+      <div class="row">
+        <div class="col-4">
+          <form class="" method="POST" name="sector" id="form_department" action="">{% csrf_token %}
+            <input type="text" name="d_name" id="d_name" value="" placeholder="Nombre del servicio" required>
+            <input type="text" name="idd" id="idd" value=""  hidden>
+            <button type="submit" name="sector" class="btn btn-outline-success btn-sm" id="save_department" onclick="return confirm('¿esta seguro de guardar el registro?')">Guardar</button>
+            <button type="submit" class="btn btn-outline-success btn-sm" id="update_department" onclick="return confirm('¿esta seguro de actualizar el registro?')" disabled>Actualizar</button>
+          </form>
+        </div>
+        <div class="separator col-7">
+          <form class="" method="POST" id="department_list_edit" action="">{% csrf_token %}
+            <div class="table-department">
+              <div class="list-group">
+                <select class="form-select" size="10" id="table_department" aria-label="size 3 select example" required>
+                </select>
+                <div class="">
+                  <button type="button" class="btn btn-outline-success btn-sm" id="edit_department">Editar</button>
+                  <button type="submit" class="btn btn-outline-success btn-sm" id="delete_department" onclick="return confirm('¿esta seguro de ELIMINAR el registro?')">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <br>
+      <br>
+      <h9 id="messageDep"></h9>
+    </div>
+
+    <!-------------------------------------------------------- SERVICE -------------------------------------------------->
+
+    <div class="service">
+      <h6><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+          <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
+          <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z" />
+        </svg>Servicios</h6>
+      <div class="row">
+        <div class="col-4">
+          <form class="" method="POST" id="form_service" action="">{% csrf_token %}
+            <label for="department"><i>Seleccione departamento</i></label>
+            <select class="form-select-sm" name="department" id="department-service" aria-label="Default select example" required>
+              <option selected hidden>Seleccionar departamento</option>
+            </select>
+            <input type="text" name="ids" id="ids" value=""  hidden>
+            <input type="text" name="s_name" id="s_name" value="" placeholder="Nombre de la categoría" required>
+            <button type="submit" class="btn btn-outline-success btn-sm" name="service" id="save_service" onclick="return confirm('¿esta seguro de guardar el registro?')">Guardar</button>
+            <button type="submit" class="btn btn-outline-success btn-sm" id="update_service" onclick="return confirm('¿esta seguro de actualizar el registro?')" disabled>Actualizar</button>
+          </form>
+
+        </div>
+
+        <div class="separator col-7">
+          <form class="" id="service_list_edit" action="" method="post">{% csrf_token %}
+            <div class="table-service">
+              <div class="list-group">
+                <select class="form-select" size="12" id="table_service" aria-label="size 3 select example" required>
+                </select>
+                <div class="">
+                  <button type="button" class="btn btn-outline-success btn-sm" id="edit_service" name="personal">Editar</button>
+                  <button type="submit" class="btn btn-outline-success btn-sm" id="delete_service" name="personal" onclick="return confirm('¿esta seguro de ELIMINAR el registro?')">Eliminar</button>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+      <br>
+      <br>
+      <h9 id="messageSer"></h9>
+    </div>
+
+    <!-------------------------------------------------------- GUARD -------------------------------------------------->
+    <div class="guard">
+      <h6><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-plus" viewBox="0 0 16 16">
+          <path
+            d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z" />
+          <path d="M8 4.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V9a.5.5 0 0 1-1 0V7.5H6a.5.5 0 0 1 0-1h1.5V5a.5.5 0 0 1 .5-.5z" />
+        </svg>Guardias / turnos</h6>
+      <div class="row">
+        <div class="col-4">
+          <form class="" method="POST" id="form_guard" action="">{% csrf_token %}
+            <select class="form-select-sm" name="department-data" id="department-data-guard" aria-label="Default select example" required>
+              <option selected hidden>Seleccionar departamento</option>
+            </select>
+            <select class="form-select-sm" name="service_option" id="service-data-guard" aria-label="Default select example" required>
+              <option selected hidden>Seleccionar servicio</option>
+            </select>
+            <input type="text" name="g_name" id="name" value="" placeholder="Nombre de la guardia/turno" required>
+            <input type="text" name="idg" id="idg" value=""  hidden>
+
+            <select class="form-select-sm" name="t_guard" id="type" aria-label="Default select example" required>
+              <option selected hidden>Seleccione el tipo</option>
+              <option value="activa">Activa</option>
+              <option value="pasiva">Pasiva</option>
+            </select>
+            <select class="form-select-sm" name="g_guard" id="duration" aria-label="Default select example" required>
+              <option selected hidden>Seleccione la duración</option>
+              <option value="24">24 hs</option>
+              <option value="12">12 hs</option>
+              <option value="8">8 hs</option>
+            </select>
+
+            <button type="submit" class="btn btn-outline-success btn-sm" id="save_guard" name="guard" style="margin-top: 15px;" onclick="return confirm('¿esta seguro de guardar el registro?')">Guardar</button>
+            <button type="submit" class="btn btn-outline-success btn-sm" id="update_guard" name="personal" style="margin-top: 15px;" onclick="return confirm('¿esta seguro de actualizar el registro?')" disabled>Actualizar</button>
+            </form>
+        </div>
+        <div class="separator col-7">
+          <form class="" id="guard_list_edit" action="" method="post">{% csrf_token %}
+            <div class="table-guard">
+              <div class="list-group">
+                <select class="form-select" size="12" id="table_guard" aria-label="size 3 select example" required>
+                </select>
+                <div class="">
+                  <button type="button" class="btn btn-outline-success btn-sm" id="edit_guard">Editar</button>
+                  <button type="submit" class="btn btn-outline-success btn-sm" id="delete_guard" onclick="return confirm('¿esta seguro de ELIMINAR el registro?')">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <br>
+      <br>
+      <h9 id="messageGuar"></h9>
+    </div>
+
+    <!-------------------------------------------------------- PERSONAL -------------------------------------------------->
+    <div class="personal">
+      <h6><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+          <path
+            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+        </svg>Personal</h6>
+      <div class="row">
+        <div class="col-4">
+          <form class="" method="POST" id="form_personal" name="personal" action="">{% csrf_token %}
+            <select name="sector_option_person" class="form-select-sm" id="department-data-personal" aria-label="Default select example" required>
+              <option selected hidden value="0">Seleccionar departamento</option>
+            </select>
+            <select class="form-select-sm" name="category_option_person" id="service-data-personal" aria-label="Default select example" required>
+              <option selected id="defaultper" hidden disabled value="0">Seleccionar servicio</option>
+            </select>
+            <input type="text" name="le_name" id="legajo_person" value="" placeholder="Legajo" required>
+            <input type="text" name="dl_name" id="d" value="" placeholder="D" required>
+            <input type="text" name="p_name" id="name_person" value="" placeholder="Nombre" required>
+            <input type="text" name="last_name" id="last_name" value="" placeholder="Apellido" required>
+            <input type="text" name="profession" id="profession" value="" placeholder="Función" required>
+            <input type="text" name="id" id="id" value="" hidden>
+            <input type="tel" name="phone" id="phone" value="" placeholder="Teléfono (ej: 02944311111 sin el 15)" pattern="[0-9]{11}" required>
+            <select class="form-select-sm" name="hours" id="is_pro" aria-label="Default select example" required>
+              <option id="defaultper" value=true selected>Ley n° 1904</option>
+              <option id="defaultper" value=false>Ley n° 1844</option>
+            </select>
+
+            <button type="submit" class="btn btn-outline-success btn-sm" id="save_person" name="personal" onclick="return confirm('¿esta seguro de guardar el registro?')">Guardar</button>
+            <button type="submit" class="btn btn-outline-success btn-sm" id="update_person" name="personal" onclick="return confirm('¿esta seguro de actualizar el registro?')" disabled>Actualizar</button>
+          </form>
+        </div>
+
+        <div class="separator col-7">
+          <form class="" id="personal_list_edit" action="" method="POST">{% csrf_token %}
+            <div class="table-personal">
+              <div class="list-group">
+                <select class="tableedit form-select" size="12" id="table_personal" aria-label="size 3 select example" required>
+                </select>
+                <div class="">
+                  <button type="button" class="btn btn-outline-success btn-sm" id="edit_person" name="personal" style="margin-top: 10px;">Editar</button>
+                  <button type="submit" class="btn btn-outline-success btn-sm" id="delete_person" name="personal" style="margin-top: 10px;" onclick="return confirm('¿esta seguro de ELIMINAR el registro?')">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <br>
+      <br>
+      <h9 id="messagePer"></h9>
+    </div>
+
+    <!-------------------------------------------------------- NOT WORKING DAYS -------------------------------------------------->
+    <div class="notworking">
+      <h6><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-x" viewBox="0 0 16 16">
+        <path d="M6.146 7.146a.5.5 0 0 1 .708 0L8 8.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 9l1.147 1.146a.5.5 0 0 1-.708.708L8 9.707l-1.146 1.147a.5.5 0 0 1-.708-.708L7.293 9 6.146 7.854a.5.5 0 0 1 0-.708z"/>
+        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+      </svg>Días feriados</h6>
+      <div class="row">
+        <div class="col-4">
+          <form class="" method="POST" name="sector" id="form_notworking" action="">{% csrf_token %}
+            <input type="date" name="w_name" id="w_date" value="" required>
+            <input type="text" name="w_name" id="w_name" value="" maxlength="50" placeholder="Feriado" required>
+            <input type="text" name="idw" id="idw" value=""  hidden>
+            <button type="submit" name="sector" class="btn btn-outline-success btn-sm" id="save_notworking" onclick="return confirm('¿esta seguro de guardar el registro?')">Guardar</button>
+            <button type="submit" class="btn btn-outline-success btn-sm" id="update_notworking" onclick="return confirm('¿esta seguro de actualizar el registro?')" disabled>Actualizar</button>
+          </form>
+        </div>
+        <div class="separator col-7">
+          <form class="" method="POST" id="notworking_list_edit" action="">{% csrf_token %}
+            <div class="table-department">
+              <div class="list-group">
+                <select class="form-select" size="12" id="table_notworking" aria-label="size 3 select example" required>
+                </select>
+                <div class="">
+                  <button type="button" class="btn btn-outline-success btn-sm" id="edit_notworking">Editar</button>
+                  <button type="submit" class="btn btn-outline-success btn-sm" id="delete_notworking" onclick="return confirm('¿esta seguro de ELIMINAR el registro?')">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <br>
+      <br>
+      <h9 id="messageWo"></h9>
+    </div>
+    <!-------------------------------------------------------- LICENCES -------------------------------------------------->
+    <div class="licences">
+      <h6><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
+        <path d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V5.5zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+      </svg>Licencias</h6>
+      <div class="row">
+        <div class="col-4">
+          <form class="" method="POST" name="sector" id="form_licences" action="">{% csrf_token %}
+
+            <input type="text" name="li_name" id="li_name" value="" maxlength="50" placeholder="Nombre" required>
+            <input type="text" name="ldw" id="idli" value=""  hidden>
+            <button type="submit" name="sector" class="btn btn-outline-success btn-sm" id="save_licences" onclick="return confirm('¿esta seguro de guardar el registro?')">Guardar</button>
+            <button type="submit" class="btn btn-outline-success btn-sm" id="update_licences" onclick="return confirm('¿esta seguro de actualizar el registro?')" disabled>Actualizar</button>
+          </form>
+        </div>
+        <div class="separator col-7">
+          <form class="" method="POST" id="licences_list_edit" action="">{% csrf_token %}
+            <div class="table-department">
+              <div class="list-group">
+                <select class="form-select" size="12" id="table_licences" aria-label="size 3 select example" required>
+                </select>
+                <div class="">
+                  <button type="button" class="btn btn-outline-success btn-sm" id="edit_licences">Editar</button>
+                  <button type="submit" class="btn btn-outline-success btn-sm" id="delete_licences" onclick="return confirm('¿esta seguro de ELIMINAR el registro?')">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <br>
+      <br>
+      <h9 id="messageLi"></h9>
+    </div>
+    <!-------------------------------------------------------- POINTS -------------------------------------------------->
+    <div class="points">
+      <h6><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calculator" viewBox="0 0 16 16">
+        <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+        <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z"/>
+      </svg>Puntaje</h6>
+      <div class="row">
+        <div class="col-4">
+          <form class="" method="POST" name="sector" id="form_points" action="">{% csrf_token %}
+            <input type="text" name="ldw" id="idpo" value=""  hidden>
+            <select class="form-select-sm" name="t_points" id="points_type" aria-label="Default select example" required>
+              <option selected hidden>Seleccione el tipo</option>
+              <option value="Activa">Activa</option>
+              <option value="Pasiva">Pasiva</option>
+            </select>
+            <select class="form-select-sm" name="d_points" id="points_day" aria-label="Default select example" required>
+              <option selected hidden>Seleccione día</option>
+              <option value="Día hábil">Día hábil</option>
+              <option value="Día no hábil">Día no hábil</option>
+            </select>
+            <input type="number" name="points" id="points_points" value="" maxlength="50" placeholder="Puntaje" required>
+
+            <button type="submit" name="sector" class="btn btn-outline-success btn-sm" id="save_points" onclick="return confirm('¿esta seguro de guardar el registro?')">Guardar</button>
+            <button type="submit" class="btn btn-outline-success btn-sm" id="update_points" onclick="return confirm('¿esta seguro de actualizar el registro?')" disabled>Actualizar</button>
+          </form>
+        </div>
+        <div class="separator col-7">
+          <form class="" method="POST" id="points_list_edit" action="">{% csrf_token %}
+            <div class="table-department">
+              <div class="list-group">
+                <select class="form-select" size="12" id="table_points" aria-label="size 3 select example" required>
+                </select>
+                <div class="">
+                  <button type="button" class="btn btn-outline-success btn-sm" id="edit_points">Editar</button>
+                  <button type="submit" class="btn btn-outline-success btn-sm" id="delete_points" onclick="return confirm('¿esta seguro de ELIMINAR el registro?')">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <br>
+      <br>
+      <h9 id="messagePo"></h9>
+    </div>
+  </div>
+</div>
+    {% endblock %}

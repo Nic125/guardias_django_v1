@@ -1,0 +1,157 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+
+<link href="{% static 'css/personal.css' %}" rel="stylesheet">
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h4 class="h4">Personal</h4>
+</div>
+<div class="row">
+  <div class="col-2">
+    <div class="asidesheet">
+      <div class="asidetitle">
+        <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+            <path
+              d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z" />
+          </svg>Filtar</p>
+      </div>
+      <hr>
+      <p id="law_s" value="law"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-medical" viewBox="0 0 16 16">
+          <path
+            d="M8.5 4.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L7 6l-.549.317a.5.5 0 1 0 .5.866l.549-.317V7.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L9 6l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V4.5zM5.5 9a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
+          <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
+        </svg>Por ley</p>
+      <select class="law" id="law" name="">
+        <option value="Todos" selected>Todos</option>
+        <option value="true">Ley n° 1904</option>
+        <option value="false">Ley n° 1844</option>
+      </select>
+      <p id="department_s" value="department"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694L1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z" />
+          <path
+            d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z" />
+        </svg>Por departamento</p>
+      <select class="department" id="department_p99" name="">
+        <option value="">Todos</option>
+      </select>
+      <p id="service_s" value="service"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+          <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
+          <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z" />
+        </svg>Por servicio</p>
+      <select class="service" id="service_p99" name="">
+        <option value="">Todos</option>
+      </select>
+
+      <br>
+      <button type="submit" name="actualizar" class="buttonsheet btn btn-outline-success btn-sm" id="update_p" style="margin-top:15px;">Filtrar</button>
+
+    </div>
+  </div>
+  <div class="col-10 inputbox">
+    <div class="content">
+      <div class="row contentrow">
+        <div class="col-3">
+          <div class="list-group">
+            <select class="form-select" size="13" id="table_perso" aria-label="size 3 select example" style="font-size: 14px;" required>
+            </select>
+
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="row">
+            <div class="col-5">
+              <div class="details" id="info">
+                <div class="name">
+                  <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                      <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z" />
+                    </svg>
+                  </div>
+                  <h6 id="per_name">Nombre y Apellido</h6>
+                </div>
+                <br>
+                <p id="p_file">Legajo</p>
+                <p id="p_dep">Departamento, servicio</p>
+                <p id="p_profession">Función</p>
+                <p id="p_tel">Teléfono</p>
+
+                <br>
+                <button type="button" name="" class="buttonsheet btn btn-outline-success btn-sm" id="licences_p" style="margin-top:15px;">Licencias</button>
+                
+                <button type="button" name="" class="buttonsheet btn btn-outline-success btn-sm" id="drop_p" style="margin-top:15px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle"
+                    viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+                  </svg>Dar de baja</button>
+              </div>
+
+            </div>
+
+            <div class="col-6">
+              <div class="">
+                <div class="lic" id="lic">
+                  <div class="lic-2">
+                    <div class="icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-medical" viewBox="0 0 16 16">
+                        <path
+                          d="M7.5 5.5a.5.5 0 0 0-1 0v.634l-.549-.317a.5.5 0 1 0-.5.866L6 7l-.549.317a.5.5 0 1 0 .5.866l.549-.317V8.5a.5.5 0 1 0 1 0v-.634l.549.317a.5.5 0 1 0 .5-.866L8 7l.549-.317a.5.5 0 1 0-.5-.866l-.549.317V5.5zm-2 4.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
+                        <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
+                      </svg>
+                    </div>
+                    <h6 id="person_name_licences">Licencias</h6>
+                  </div>
+                  <br>
+                  <form class="" action="" id="form_licences" method="post">{% csrf_token %}
+                  <select class="form-select" size="4" id="table_lic" aria-label="size 3 select example" style="font-size: 14px;" required>
+                  </select>
+                  <button type="submit" style="float:right; margin-top:15px;" name="" class="buttonsheet btn btn-outline-success btn-sm" id="licences_delete" onclick="return confirm('¿esta seguro de eliminar el registro?')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                  </svg></button>
+                  </form>
+                  <div class="lic-3">
+                    <div class="row">
+                      <div class="col-6">
+
+                          <p><strong>Crear nueva</strong></p>
+                          <form class="" action="" id="save_lic" method="post">{% csrf_token %}
+
+                          <p>Desde: </p>
+                          <input type="date" name="from" id="from" value="" required>
+                          <p>Hasta: </p>
+                          <input type="date" name="from" id="till" value="" required>
+                          <p>Motivo</p>
+                          <select class="" id="list_lic-3" name="">
+                          </select>
+                          <br>
+                          <button type="submit" name="" class="buttonsheet btn btn-outline-success btn-sm" id="licences_p" style="margin-top:15px;" onclick="return confirm('¿esta seguro de guardar el registro?')">Guardar</button>
+                          </form>
+                      </div>
+
+                        <br>
+
+                      </div>
+                    </div>
+
+                    <p id="messageLic"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
